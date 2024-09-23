@@ -1,99 +1,147 @@
-class User:
-    def __init__(self, username, age, interests, location):
-        self.username = username
-        self.age = age
-        self.interests = interests
-        self.location = location
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소개팅 앱</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>소개팅 앱</h1>
 
-class DatingApp:
-    def __init__(self):
-        self.users = []
-        self.profile_manager = UserProfileManager()
-        self.matching_algorithm = MatchingAlgorithm()
-        self.messaging = Messaging()
+    <div class="section">
+        <h2>사용자 등록</h2>
+        <input type="text" id="username" placeholder="사용자명">
+        <input type="number" id="age" placeholder="나이">
+        <input type="text" id="interests" placeholder="관심사 (쉼표로 구분)">
+        <input type="text" id="location" placeholder="위치">
+        <button onclick="registerUser()">등록</button>
+    </div>
 
-    def register_user(self, username, age, interests, location):
-        new_user = self.profile_manager.create_profile(username, age, interests, location)
-        self.users.append(new_user)
-        return new_user
+    <div class="section">
+        <h2>사용자 목록</h2>
+        <button onclick="showUsers()">사용자 목록 보기</button>
+        <div id="userList"></div>
+    </div>
 
-    def show_users(self):
-        return [(user.username, user.age, user.interests, user.location) for user in self.users]
+    <div class="section">
+        <h2>매치 찾기</h2>
+        <input type="text" id="matchUsername" placeholder="사용자명">
+        <button onclick="findMatches()">매치 찾기</button>
+        <div id="matchList"></div>
+    </div>
 
-    def find_matches(self, username):
-        user = self.profile_manager.get_profile(username)
-        return self.matching_algorithm.match_users(self.users, user)
+    <div class="section">
+        <h2>메시지 보내기</h2>
+        <input type="text" id="sender" placeholder="보내는 사람">
+        <input type="text" id="receiver" placeholder="받는 사람">
+        <input type="text" id="message" placeholder="메시지">
+        <button onclick="sendMessage()">보내기</button>
+    </div>
 
-    def send_message(self, sender, receiver, message):
-        self.messaging.send_message(sender, receiver, message)
+    <div class="section">
+        <h2>메시지 확인</h2>
+        <input type="text" id="messageUsername" placeholder="사용자명">
+        <button onclick="getMessages()">메시지 확인</button>
+        <div id="messageList"></div>
+    </div>
 
-    def get_messages(self, username):
-        return self.messaging.get_messages(username)
+    <script>
+        class User {
+            constructor(username, age, interests, location) {
+                this.username = username;
+                this.age = age;
+                this.interests = interests;
+                this.location = location;
+            }
+        }
 
-class UserProfileManager:
-    def __init__(self):
-        self.profiles = {}
+        class DatingApp {
+            constructor() {
+                this.users = [];
+                this.messages = {};
+            }
 
-    def create_profile(self, username, age, interests, location):
-        profile = User(username, age, interests, location)
-        self.profiles[username] = profile
-        return profile
+            registerUser(username, age, interests, location) {
+                const newUser = new User(username, age, interests, location);
+                this.users.push(newUser);
+                return newUser;
+            }
 
-    def update_profile(self, username, age=None, interests=None, location=None):
-        if username in self.profiles:
-            profile = self.profiles[username]
-            if age is not None:
-                profile.age = age
-            if interests is not None:
-                profile.interests = interests
-            if location is not None:
-                profile.location = location
-            return profile
-        return None
+            showUsers() {
+                return this.users.map(user => `${user.username} (${user.age}): ${user.interests.join(', ')} - ${user.location}`);
+            }
 
-    def get_profile(self, username):
-        return self.profiles.get(username)
+            findMatches(username) {
+                const user = this.users.find(u => u.username === username);
+                if (!user) return [];
+                return this.users.filter(u => 
+                    u.username !== username && 
+                    u.interests.some(i => user.interests.includes(i)) &&
+                    u.location !== user.location
+                ).map(u => u.username);
+            }
 
-class MatchingAlgorithm:
-    def match_users(self, users, current_user):
-        matches = []
-        for user in users:
-            if user.username != current_user.username:
-                if 'music' in user.interests and user.location != current_user.location:
-                    matches.append(user.username)
-        return matches
+            sendMessage(sender, receiver, message) {
+                if (!this.messages[receiver]) {
+                    this.messages[receiver] = [];
+                }
+                this.messages[receiver].push({ sender, message });
+            }
 
-class Messaging:
-    def __init__(self):
-        self.messages = {}
+            getMessages(username) {
+                return this.messages[username] || [];
+            }
+        }
 
-    def send_message(self, sender, receiver, message):
-        if receiver not in self.messages:
-            self.messages[receiver] = []
-        self.messages[receiver].append((sender, message))
+        const app = new DatingApp();
 
-    def get_messages(self, username):
-        return self.messages.get(username, [])
+        function registerUser() {
+            const username = document.getElementById('username').value;
+            const age = document.getElementById('age').value;
+            const interests = document.getElementById('interests').value.split(',').map(i => i.trim());
+            const location = document.getElementById('location').value;
+            app.registerUser(username, age, interests, location);
+            alert('사용자가 등록되었습니다.');
+        }
 
-# 앱 사용 예시
-if __name__ == '__main__':
-    app = DatingApp()
-    
-    # 사용자 등록
-    app.register_user('Alice', 25, ['music', 'travel'], 'New York')
-    app.register_user('Bob', 30, ['sports', 'music'], 'Los Angeles')
-    app.register_user('Charlie', 28, ['music', 'art'], 'Chicago')
-    
-    # 사용자 목록 출력
-    print("사용자 목록:", app.show_users())
-    
-    # Alice의 매치 찾기
-    alice_matches = app.find_matches('Alice')
-    print("Alice의 매치:", alice_matches)
-    
-    # 메시지 보내기
-    app.send_message('Alice', 'Bob', '안녕하세요, Bob!')
-    app.send_message('Bob', 'Alice', '안녕하세요, Alice!')
-    
-    # Alice의 메시지 확인
-    print("Alice의 메시지:", app.get_messages('Alice'))
+        function showUsers() {
+            const userList = app.showUsers();
+            document.getElementById('userList').innerHTML = userList.join('<br>');
+        }
+
+        function findMatches() {
+            const username = document.getElementById('matchUsername').value;
+            const matches = app.findMatches(username);
+            document.getElementById('matchList').innerHTML = matches.join('<br>') || '매치가 없습니다.';
+        }
+
+        function sendMessage() {
+            const sender = document.getElementById('sender').value;
+            const receiver = document.getElementById('receiver').value;
+            const message = document.getElementById('message').value;
+            app.sendMessage(sender, receiver, message);
+            alert('메시지가 전송되었습니다.');
+        }
+
+        function getMessages() {
+            const username = document.getElementById('messageUsername').value;
+            const messages = app.getMessages(username);
+            document.getElementById('messageList').innerHTML = messages.map(m => `${m.sender}: ${m.message}`).join('<br>') || '메시지가 없습니다.';
+        }
+    </script>
+</body>
+</html>
