@@ -4,6 +4,30 @@
 <html>
 <head>
     <title>시라노소개팅 멤버쉽 14일 무료체험</title>
+    // UTM 매개변수를 쿠키에 저장
+function setUTMCookies() {
+  var params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  var urlParams = new URLSearchParams(window.location.search);
+  params.forEach(function(param) {
+    if (urlParams.has(param)) {
+      document.cookie = param + '=' + urlParams.get(param) + ';path=/;';
+    }
+  });
+}
+
+// 페이지 로드 시 실행
+window.addEventListener('load', setUTMCookies);
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK3RP5GK10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XK3RP5GK10');
+</script>
+
 </head>
 <body>
   <div data-tf-live="01J8F6M9KCNGCM8S5C0HS2H9RD"></div><script src="//embed.typeform.com/next/embed.js"></script>
