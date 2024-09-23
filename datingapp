@@ -1,0 +1,99 @@
+class User:
+    def __init__(self, username, age, interests, location):
+        self.username = username
+        self.age = age
+        self.interests = interests
+        self.location = location
+
+class DatingApp:
+    def __init__(self):
+        self.users = []
+        self.profile_manager = UserProfileManager()
+        self.matching_algorithm = MatchingAlgorithm()
+        self.messaging = Messaging()
+
+    def register_user(self, username, age, interests, location):
+        new_user = self.profile_manager.create_profile(username, age, interests, location)
+        self.users.append(new_user)
+        return new_user
+
+    def show_users(self):
+        return [(user.username, user.age, user.interests, user.location) for user in self.users]
+
+    def find_matches(self, username):
+        user = self.profile_manager.get_profile(username)
+        return self.matching_algorithm.match_users(self.users, user)
+
+    def send_message(self, sender, receiver, message):
+        self.messaging.send_message(sender, receiver, message)
+
+    def get_messages(self, username):
+        return self.messaging.get_messages(username)
+
+class UserProfileManager:
+    def __init__(self):
+        self.profiles = {}
+
+    def create_profile(self, username, age, interests, location):
+        profile = User(username, age, interests, location)
+        self.profiles[username] = profile
+        return profile
+
+    def update_profile(self, username, age=None, interests=None, location=None):
+        if username in self.profiles:
+            profile = self.profiles[username]
+            if age is not None:
+                profile.age = age
+            if interests is not None:
+                profile.interests = interests
+            if location is not None:
+                profile.location = location
+            return profile
+        return None
+
+    def get_profile(self, username):
+        return self.profiles.get(username)
+
+class MatchingAlgorithm:
+    def match_users(self, users, current_user):
+        matches = []
+        for user in users:
+            if user.username != current_user.username:
+                if 'music' in user.interests and user.location != current_user.location:
+                    matches.append(user.username)
+        return matches
+
+class Messaging:
+    def __init__(self):
+        self.messages = {}
+
+    def send_message(self, sender, receiver, message):
+        if receiver not in self.messages:
+            self.messages[receiver] = []
+        self.messages[receiver].append((sender, message))
+
+    def get_messages(self, username):
+        return self.messages.get(username, [])
+
+# 앱 사용 예시
+if __name__ == '__main__':
+    app = DatingApp()
+    
+    # 사용자 등록
+    app.register_user('Alice', 25, ['music', 'travel'], 'New York')
+    app.register_user('Bob', 30, ['sports', 'music'], 'Los Angeles')
+    app.register_user('Charlie', 28, ['music', 'art'], 'Chicago')
+    
+    # 사용자 목록 출력
+    print("사용자 목록:", app.show_users())
+    
+    # Alice의 매치 찾기
+    alice_matches = app.find_matches('Alice')
+    print("Alice의 매치:", alice_matches)
+    
+    # 메시지 보내기
+    app.send_message('Alice', 'Bob', '안녕하세요, Bob!')
+    app.send_message('Bob', 'Alice', '안녕하세요, Alice!')
+    
+    # Alice의 메시지 확인
+    print("Alice의 메시지:", app.get_messages('Alice'))
