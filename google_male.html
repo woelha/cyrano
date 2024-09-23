@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-// UTM 매개변수를 쿠키에 저장
-function setUTMCookies() {
-  var params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-  var urlParams = new URLSearchParams(window.location.search);
-  params.forEach(function(param) {
-    if (urlParams.has(param)) {
-      document.cookie = param + '=' + urlParams.get(param) + ';path=/;';
-    }
-  });
-}
-
-// 페이지 로드 시 실행
-window.addEventListener('load', setUTMCookies);
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>시라노 14일 무료체험</title>
@@ -39,6 +25,21 @@ window.addEventListener('load', setUTMCookies);
   gtag('js', new Date());
 
   gtag('config', 'G-XK3RP5GK10');
+</script>
+  <script>
+// UTM 매개변수를 쿠키에 저장
+function setUTMCookies() {
+  var params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  var urlParams = new URLSearchParams(window.location.search);
+  params.forEach(function(param) {
+    if (urlParams.has(param)) {
+      document.cookie = param + '=' + urlParams.get(param) + ';path=/;';
+    }
+  });
+}
+
+// 페이지 로드 시 실행
+window.addEventListener('load', setUTMCookies);
 </script>
 
     <style>
