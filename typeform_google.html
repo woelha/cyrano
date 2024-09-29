@@ -2,21 +2,27 @@
 <html>
 <head>
     <title>시라노소개팅 멤버쉽 14일 무료체험</title>
-    <script>
-    // UTM 매개변수를 쿠키에 저장
-    function setUTMCookies() {
-      var params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-      var urlParams = new URLSearchParams(window.location.search);
-      params.forEach(function(param) {
-        if (urlParams.has(param)) {
-          document.cookie = param + '=' + urlParams.get(param) + ';path=/;';
-        }
-      });
-    }
+   <script>
+// 링크 수정
+function addUTMToLinks() {
+  const storedUTM = JSON.parse(localStorage.getItem('utmParams'));
+  if (!storedUTM) return;
 
-    // 페이지 로드 시 실행
-    window.addEventListener('load', setUTMCookies);
-    </script>
+  const links = document.querySelectorAll('a');
+  links.forEach(link => {
+    if (link.host === window.location.host) {
+      const url = new URL(link.href);
+      Object.keys(storedUTM).forEach(key => {
+        url.searchParams.set(key, storedUTM[key]);
+      });
+      link.href = url.toString();
+    }
+  });
+}
+
+// 페이지 로드 시 링크 수정 함수 실행
+document.addEventListener('DOMContentLoaded', addUTMToLinks);
+</script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK3RP5GK10"></script>
