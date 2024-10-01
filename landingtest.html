@@ -27,162 +27,201 @@
   gtag('config', 'G-XK3RP5GK10');
 </script>
 
-    <style>
-        /* CSS Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+    /* CSS Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-        }
+    body, html {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
 
-        .container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #f1f1f1; /* Example background color */
-        }
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f1f1f1;
+    }
+
+    .triggerImage {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        z-index: 1000;
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .popup h2 {
+        font-size: 24px;
+        margin: 0 0 20px 0;
+        line-height: 1.3;
+    }
+
+    .popup p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0 0 25px 0;
+    }
+
+    .popup form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .popup input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .popup input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .popup button {
+        width: 100%;
+        height: 50px;
+        background-color: #4623f4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .popup button:hover {
+        background-color: #3b1fd1;
+        transform: translateY(-2px);
+    }
+
+    button#freeTrialButton {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 30px;
+        background-color: #4623f4;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        max-width: 300px;
+        box-shadow: 0 4px 10px rgba(70, 35, 244, 0.3);
+        transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    button#freeTrialButton:hover {
+        background-color: #3b1fd1;
+        transform: translateX(-50%) translateY(-2px);
+        box-shadow: 0 6px 15px rgba(70, 35, 244, 0.4);
+    }
+
+    .consent {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .consent .highlight {
+        color: #4623f4;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    #privacyPopup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        z-index: 1000;
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+    }
 
     /* Desktop styles */
     @media screen and (min-width: 1024px) {
         .container {
-            margin-left: 200px;
-            margin-right: 200px;
-            width: calc(100% - 200px); /* Adjust width to account for margins */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         .triggerImage {
-            width: 100%;
-            height: auto;
-            display: block; /* Ensures no space below the image */
+            max-height: 600px;
+            object-fit: cover;
         }
 
         .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #f1f1f1;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            text-align: center;
-            width: 90%;
-            max-width: 350px;
+            padding: 40px;
         }
 
         .popup h2 {
-            font-size: 22px;
-            margin: 0 0 15px 0;
-            line-height: 1.3;
+            font-size: 28px;
         }
 
         .popup p {
-            font-size: 16px;
-            line-height: 1.5;
-            margin: 0 0 20px 0;
-        }
-
-        .popup form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .popup input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        .popup input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .popup button {
-            width: 100%;
-            height: 50px;
-            background-color: #4623f4;
-            color: white;
-            border: none;
-            border-radius: 5px;
             font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .popup button:hover {
-            background-color: #3b1fd1;
         }
 
         button#freeTrialButton {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            background-color: #4623f4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 300px; /* Optional, set a max width for larger screens */
-            box-sizing: border-box;
-            white-space: nowrap; /* Prevent text wrapping */
+            font-size: 20px;
+            padding: 18px 36px;
+        }
+    }
+
+    @media screen and (min-width: 1440px) {
+        .container {
+            max-width: 1400px;
         }
 
-        .consent {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            margin-bottom: 15px;
+        .popup {
+            max-width: 450px;
         }
-
-        .consent .highlight {
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        #privacyPopup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #f1f1f1;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            text-align: center;
-            width: 90%;
-            max-width: 350px;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="container">
