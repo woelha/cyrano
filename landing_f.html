@@ -13,20 +13,17 @@
         }
         .landing-container {
             position: relative;
-            height: 100vh;
+            height: auto;
             overflow-y: auto;
-            scroll-snap-type: y mandatory;
         }
         .image-container {
-            height: 100vh;
-            scroll-snap-align: start;
+            height: auto;
         }
         .landing-image {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: sticky;
-            top: 0;
+            height: auto;
+            display: block;
+            cursor: pointer;
         }
         .cta-button {
             position: fixed;
@@ -59,17 +56,15 @@
 <body>
     <div class="landing-container">
         <div class="image-container">
-            <img src="images/여성_광고랜딩페이지_v1.png" alt="시라노 소개팅 무료체험 이벤트" class="landing-image">
+            <img src="images/여성_광고랜딩페이지_v1.png" alt="시라노 소개팅 무료체험 이벤트" class="landing-image" onclick="redirectToForm()">
         </div>
     </div>
-    <a href="#" class="cta-button">선착순 무료체험 신청</a>
+    <a href="#" class="cta-button" onclick="redirectToForm()">선착순 무료체험 신청</a>
 
     <script>
-        document.querySelector('.cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            // 여기에 CTA 버튼 클릭 시 실행할 동작을 추가하세요
-            alert('무료체험 신청이 완료되었습니다!');
-        });
+        function redirectToForm() {
+            window.location.href = "https://artin1ife.typeform.com/to/Ryw3Nphu?utm_source=test_f&utm_medium=meta_paid&utm_campaign=conversion&utm_content=xxxxx";
+        }
     </script>
 </body>
 </html>
