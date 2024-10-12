@@ -5,124 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>시라노 소개팅 무료체험 이벤트</title>
     <style>
-        /* 공통 스타일 */
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+        body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
         }
-
-        .landing-page {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .landing-container {
+            position: relative;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
         }
-
-        .content {
-            text-align: center;
+        .image-container {
+            height: 100vh;
+            scroll-snap-align: start;
         }
-
-        h1 {
-            color: #FF69B4;
+        .landing-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: sticky;
+            top: 0;
         }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            cursor: pointer;
-        }
-
-        .cta-button-container {
+        .cta-button {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .cta-button {
-            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: #FF69B4;
             color: white;
-            padding: 15px 25px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
+            padding: 15px 30px;
             border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 1000;
             transition: background-color 0.3s ease;
         }
-
         .cta-button:hover {
             background-color: #FF1493;
         }
-
-        /* 모바일 최적화 */
-        @media only screen and (max-width: 600px) {
-            body {
-                font-size: 16px;
-            }
-            
-            h1 {
-                font-size: 24px;
-                margin-bottom: 15px;
-            }
-            
-            p {
-                margin-bottom: 20px;
-            }
-            
-            .cta-button {
-                padding: 12px 20px;
-                font-size: 16px;
-            }
-        }
-
-        /* PC 최적화 */
-        @media only screen and (min-width: 601px) {
-            body {
-                font-size: 18px;
-            }
-            
-            .landing-page {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-            }
-            
-            h1 {
-                font-size: 36px;
-                margin-bottom: 20px;
-            }
-            
-            p {
-                margin-bottom: 30px;
-            }
-            
-            img {
-                max-height: 400px;
+        @media (max-width: 768px) {
+            .landing-image {
                 object-fit: cover;
+            }
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="landing-page">
-        <div class="content">
-            <h1>시라노 소개팅 무료체험 이벤트</h1>
-            <p>당신의 인연을 찾아드립니다. 지금 바로 무료로 체험해보세요!</p>
-            <img src="images/여성_광고랜딩페이지_v1.png" alt="시라노 소개팅 무료체험 이벤트" onclick="redirectToForm()">
+    <div class="landing-container">
+        <div class="image-container">
+            <img src="https://raw.githubusercontent.com/yourusername/yourrepository/main/images/여성_광고랜딩페이지_v1.png" alt="시라노 소개팅 무료체험 이벤트" class="landing-image">
         </div>
     </div>
-    <div class="cta-button-container">
-        <a href="#" class="cta-button" onclick="redirectToForm()">선착순 무료체험 신청</a>
-    </div>
+    <a href="#" class="cta-button">무료체험 신청하기</a>
 
     <script>
-        function redirectToForm() {
-            window.location.href = "https://artin1ife.typeform.com/to/Ryw3Nphu?utm_source=test_f&utm_medium=meta_paid&utm_campaign=conversion&utm_content=xxxxx";
-        }
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            // 여기에 CTA 버튼 클릭 시 실행할 동작을 추가하세요
+            alert('무료체험 신청이 완료되었습니다!');
+        });
     </script>
 </body>
 </html>
