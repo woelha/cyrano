@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>시라노 14일 무료체험</title>
-    <!-- Meta Pixel Code -->
+    <title>시라노 이벤트 회원가입 페이지</title>
+    <!-- Meta Pixel Code --> 
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -18,14 +18,14 @@
     fbq('track', 'PageView');
     </script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK3RP5GK10"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK3RP5GK10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-XK3RP5GK10');
-</script>
+      gtag('config', 'G-XK3RP5GK10');
+    </script>
 
     <style>
         /* CSS Reset */
@@ -54,214 +54,60 @@
             width: 100%;
             height: auto;
             display: block; /* Ensures no space below the image */
+            cursor: pointer; /* Changes cursor to pointer on hover */
         }
-
-        .popup {
-            display: none;
+        .fixed-button-container {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #f1f1f1;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
             z-index: 1000;
-            text-align: center;
+        }
+        .fixed-button {
+            display: block;
             width: 90%;
-            max-width: 350px;
-        }
-
-        .popup h2 {
-            font-size: 22px;
-            margin: 0 0 15px 0;
-            line-height: 1.3;
-        }
-
-        .popup p {
-            font-size: 16px;
-            line-height: 1.5;
-            margin: 0 0 20px 0;
-        }
-
-        .popup form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .popup input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        .popup input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .popup button {
-            width: 100%;
-            height: 50px;
-            background-color: #4623f4;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #FF4081;
             color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .popup button:hover {
-            background-color: #3b1fd1;
-        }
-
-        button#freeTrialButton {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            background-color: #4623f4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
             text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 300px; /* Optional, set a max width for larger screens */
-            box-sizing: border-box;
-            white-space: nowrap; /* Prevent text wrapping */
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .consent {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            margin-bottom: 15px;
+        .fixed-button:hover, .fixed-button:focus {
+            background-color: #E91E63;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
-
-        .consent .highlight {
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        #privacyPopup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #f1f1f1;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            text-align: center;
-            width: 90%;
-            max-width: 350px;
+        @media (max-width: 768px) {
+            .image-container {
+                width: 100%;
+                margin: 0;
+            }
+            .fixed-button {
+                font-size: 16px;
+                padding: 12px 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- New Trigger Images -->
-       <img src="images/여성_광고랜딩페이지_v1.png" alt="시라노 소개팅 무료체험 이벤트">
+        <img class="triggerImage" src="images/f_emailsub_typage.png" alt="멤버쉽 가입 이벤트" onclick="window.open('https://artin1ife.typeform.com/to/Ryw3Nphu?utm_source=test_f&utm_medium=meta_paid&utm_campaign=conversion&utm_content=xxxxx', '_blank')">
     </div>
-
-    <div id="emailPopup" class="popup">
-        <h2>시라노소개팅 14일 무료체험</h2>
-        <p>시라노 연애코디가 추천하는 매력적인 이성 프로필을 14일간 무료로 받아보세요!</p>
-        <form id="emailForm">
-            <input type="email" id="email" name="email" placeholder="이메일 주소" required="">
-            <div class="consent">
-                <input type="checkbox" id="consent" name="consent" required="">
-                <label for="consent">(필수) <span class="highlight" id="privacyLink">개인정보 수집 및 이용</span>에 동의합니다.</label>
-            </div>
-            <button type="submit">신청하기</button>
-        </form>
+        <div class="fixed-button-container">
+        <a href="https://artin1ife.typeform.com/to/Ryw3Nphu?utm_source=test_f&utm_medium=meta_paid&utm_campaign=conversion&utm_content=xxxxx" target="_blank" class="fixed-button">
+            무료체험 혜택 시작하기 ▶
+        </a>
     </div>
-
-    <div id="privacyPopup" class="popup">
-        <h2>개인정보 수집 및 이용</h2>
-        <p>뉴스레터 발송을 위한 최소한의 개인정보를 수집하고 이용합니다. 수집된 정보는 발송 외 다른 목적으로 이용되지 않으며, 서비스가 종료되거나 구독을 해지할 경우 즉시 파기됩니다.</p>
-        <button onclick="document.getElementById('privacyPopup').style.display='none'">닫기</button>
-    </div>
-
-    <button id="freeTrialButton">선착순 무료체험 신청</button>
-
-    <script>
-        // Updated to use class selector for multiple images
-        document.querySelectorAll('.triggerImage').forEach(image => {
-            image.onclick = function() {
-                document.getElementById('emailPopup').style.display = 'block';
-            };
-        });
-
-        document.getElementById('freeTrialButton').onclick = function() {
-            document.getElementById('emailPopup').style.display = 'block';
-        };
-
-        document.getElementById('emailForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const date = new Date();
-            const dateString = date.toISOString().slice(0, 10); // YYYY-MM-DD 형식
-            const timeString = date.toTimeString().slice(0, 8); // HH:MM:SS 형식
-
-            fetch('https://script.google.com/macros/s/AKfycbx-vvxd_Umgp5WIVTwcvbKk7WxcXO4MP8OSePE-5td3nM1T6nf3WgaktYoQHY3Lb6F41A/exec', {
-                method: 'POST',
-                mode: 'no-cors', // 이 줄을 추가
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    date: dateString,
-                    time: timeString
-                })
-            })
-            .then(response => {
-                console.log('Response received');
-                return response.text(); // JSON 대신 text로 변경
-            })
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
-            alert('14일 무료체험 선착순 만료 전에 회원가입을 완료하세요!');
-            document.getElementById('emailPopup').style.display = 'none';
-            window.location.href = 'https://cyrano.link/103';
-        });
-
-        document.getElementById('privacyLink').onclick = function() {
-            document.getElementById('privacyPopup').style.display = 'block';
-        };
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('emailPopup')) {
-                document.getElementById('emailPopup').style.display = 'none';
-            } else if (event.target == document.getElementById('privacyPopup')) {
-                document.getElementById('privacyPopup').style.display = 'none';
-            }
-        };
-    </script>
 </body>
 </html>
