@@ -18,14 +18,13 @@
     fbq('track', 'PageView');
     </script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK3RP5GK10"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XK3RP5GK10');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK3RP5GK10"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XK3RP5GK10');
+    </script>
 
     <style>
         /* CSS Reset */
@@ -51,9 +50,17 @@
         }
 
         .triggerImage {
-            width: 100%;
-            height: auto;
-            display: block; /* Ensures no space below the image */
+            width: 100%; /* 부모 요소에 맞춤 */
+            height: auto; /* 비율 유지 */
+            max-width: 100%; /* 원본 크기를 넘지 않음 */
+            display: block; /* 이미지 아래 공백 제거 */
+        }
+
+        @media (max-width: 768px) {
+            .triggerImage {
+                width: 100%; /* 모바일 화면 크기에 맞춤 */
+                height: auto;
+            }
         }
 
         .popup {
@@ -178,10 +185,9 @@
 </head>
 <body>
     <div class="container">
-        <!-- New Trigger Images -->
-        <img class="triggerImage" src="https://leadgeny.kr/data/file/smarteditor2/2024-09-03/fc2384a55a4bfcce715b1b8d08a8603e_1725350737_5254.png" title="fc2384a55a4bfcce715b1b8d08a8603e_1725350737_5254.png">
-        <img class="triggerImage" src="https://leadgeny.kr/data/file/smarteditor2/2024-09-03/fc2384a55a4bfcce715b1b8d08a8603e_1725350737_6718.png" title="fc2384a55a4bfcce715b1b8d08a8603e_1725350737_6718.png">
-        <img class="triggerImage" src="https://leadgeny.kr/data/file/smarteditor2/2024-09-03/fc2384a55a4bfcce715b1b8d08a8603e_1725350737_9723.png" title="fc2384a55a4bfcce715b1b8d08a8603e_1725350737_9723.png">
+        <!-- Updated Trigger Images -->
+        <img class="triggerImage" src="./images/남성_이메일캠페인_1.png" title="남성 이메일 캠페인 1">
+        <img class="triggerImage" src="./images/남성_이메일캠페인_2.png" title="남성 이메일 캠페인 2">
     </div>
 
     <div id="emailPopup" class="popup">
@@ -206,7 +212,6 @@
     <button id="freeTrialButton">선착순 무료체험 신청</button>
 
     <script>
-        // Updated to use class selector for multiple images
         document.querySelectorAll('.triggerImage').forEach(image => {
             image.onclick = function() {
                 document.getElementById('emailPopup').style.display = 'block';
@@ -219,38 +224,8 @@
 
         document.getElementById('emailForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const date = new Date();
-            const dateString = date.toISOString().slice(0, 10); // YYYY-MM-DD 형식
-            const timeString = date.toTimeString().slice(0, 8); // HH:MM:SS 형식
-
-            fetch('https://script.google.com/macros/s/AKfycbx-vvxd_Umgp5WIVTwcvbKk7WxcXO4MP8OSePE-5td3nM1T6nf3WgaktYoQHY3Lb6F41A/exec', {
-                method: 'POST',
-                mode: 'no-cors', // 이 줄을 추가
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    date: dateString,
-                    time: timeString
-                })
-            })
-            .then(response => {
-                console.log('Response received');
-                return response.text(); // JSON 대신 text로 변경
-            })
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
             alert('14일 무료체험 선착순 만료 전에 회원가입을 완료하세요!');
             document.getElementById('emailPopup').style.display = 'none';
-            window.location.href = 'https://cyrano.link/103';
         });
 
         document.getElementById('privacyLink').onclick = function() {
