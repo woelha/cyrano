@@ -178,8 +178,8 @@
 </head>
 <body>
     <div class="container">
-        <!-- New Trigger Images -->
-        <img class="triggerImage" src="images/여성_광고랜딩페이지_v1.png" alt="시라노 소개팅 무료체험 이벤트">
+        <!-- Updated Trigger Images -->
+        <img class="triggerImage" src="images/여성_이메일캠페인_1.png" alt="여성 이메일 캠페인 이미지">
     </div>
 
     <div id="emailPopup" class="popup">
@@ -204,7 +204,6 @@
     <button id="freeTrialButton">선착순 무료체험 신청</button>
 
     <script>
-        // Updated to use class selector for multiple images
         document.querySelectorAll('.triggerImage').forEach(image => {
             image.onclick = function() {
                 document.getElementById('emailPopup').style.display = 'block';
@@ -225,7 +224,7 @@
 
             fetch('https://script.google.com/macros/s/AKfycbzj1ykDNvLAWjAXZ4yKvZUr0fwmK7UuzBvSeTCg7uEQ8i9QlQ3zmFQ0_v-qWUC63paY/exec', {
                 method: 'POST',
-                mode: 'no-cors', // 이 줄을 추가
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -237,7 +236,7 @@
             })
             .then(response => {
                 console.log('Response received');
-                return response.text(); // JSON 대신 text로 변경
+                return response.text();
             })
             .then(data => {
                 console.log('Success:', data);
@@ -248,20 +247,4 @@
 
             alert('14일 무료체험 선착순 만료 전에 회원가입을 완료하세요!');
             document.getElementById('emailPopup').style.display = 'none';
-            window.location.href = 'https://cyrano.kr/typage_f_emailsub';
-        });
-
-        document.getElementById('privacyLink').onclick = function() {
-            document.getElementById('privacyPopup').style.display = 'block';
-        };
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('emailPopup')) {
-                document.getElementById('emailPopup').style.display = 'none';
-            } else if (event.target == document.getElementById('privacyPopup')) {
-                document.getElementById('privacyPopup').style.display = 'none';
-            }
-        };
-    </script>
-</body>
-</html>
+            window.location.href = 'https://cyrano.kr/typage
